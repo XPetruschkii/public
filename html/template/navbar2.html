@@ -1,0 +1,53 @@
+<head>
+    <script>
+        // function to toggle the dark mode and save the preference in local storage
+        function toggleDarkMode() {
+            var body = document.getElementsByTagName('body')[0];
+            if (body.classList.contains('darkmode')) {
+                body.classList.remove('darkmode');
+                localStorage.setItem('darkmode', 'off');
+            } else {
+                body.classList.add('darkmode');
+                localStorage.setItem('darkmode', 'on');
+            }
+        }
+
+        // function to load the user's preference from local storage
+        function loadDarkModePreference() {
+            var darkmode = localStorage.getItem('darkmode');
+            if (darkmode === 'on') {
+                document.getElementsByTagName('body')[0].classList.add('darkmode');
+            } else {
+                document.getElementsByTagName('body')[0].classList.remove('darkmode');
+            }
+        }
+
+        window.addEventListener('load', function() {
+            // load the user's preference when the page is loaded
+            loadDarkModePreference();
+            
+            // add the event listener to the "Theme" link
+            document.getElementById('dark_mode_button').addEventListener('click', toggleDarkMode);
+        });
+    </script>
+     <!-- 80*Anzahl der Links in der Navbar als höhe in .list-container.active{ weil es hier 5 einträge sind, wird auf die css mit 400px height aufgerufen -->
+    <link rel="stylesheet" href="/public/css/navbar-5.css">
+</head>
+<body class="darkmode">
+    <nav>
+        <div class="nav-logo">SHS APP</div>
+        <a href="#" class="toggle-button">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="list-container">
+            <ul>
+                <li><a href="/public/php/homepage/about.php">Homepage</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Profil</a></li>
+                <li><a id="dark_mode_button" href="#">Theme</a></li>
+                <li><a href="/public/php/auth-sys/login.php">Anmelden</a></li>
+            </ul>
+        </div>
+    </nav>
